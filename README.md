@@ -64,6 +64,9 @@ infinum_azure:
   client_id: 'client_id_from_InfinumAzure'
   client_secret: 'client_secret_from_InfinumAzure'
   tenant: 'InfinumAzure_tenant'
+  name: 'InfinumAzure_name' # defaults to "azure" -> no need to change unless it's explicitly required
+  policy: 'InfinumAzure_policy' # defaults to "B2C_1_sign_in" -> no need to change unless it's explicitly required
+  scope: 'InfinumAzure_scope' # defaults to "openid" -> no need to change unless it's explicitly required
 ```
 
 ## Usage
