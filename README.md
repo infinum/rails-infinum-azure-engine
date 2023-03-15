@@ -102,6 +102,30 @@ or, if you just want to clear the session, but not log out of Infinum Azure, you
 link_to 'Logout', logout_path
 ```
 
+## Known issues
+
+If you don't get what you're looking for, check your terminal output and see if omniauth logs are saying anything similar to:
+
+```
+DEBUG -- omniauth: (google_oauth2) Request phase initiated.
+WARN -- omniauth: Attack prevented by OmniAuth::AuthenticityTokenProtection
+ERROR -- omniauth: (google_oauth2) Authentication failure! authenticity_error: OmniAuth::AuthenticityError, Forbidden
+```
+
+To resolve this issue, install the omniauth-rails_csrf_protection gem:
+
+```ruby
+gem 'omniauth-rails_csrf_protection'
+```
+
+Make sure to use HTTP method POST for authenticating. If you are using a link, you can set the HTTP method to POST like this:
+
+```ruby
+link_to 'Login', user_infinum_azure_omniauth_authorize_path, method: :post
+```
+
+or, simply with `#button_to` as mentioned above.
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
