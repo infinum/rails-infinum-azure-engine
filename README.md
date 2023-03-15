@@ -43,15 +43,12 @@ Or install it yourself as:
 InfinumAzure.configure do |config|
   config.service_name = 'Revisor'
   config.resource_name = 'User'
-  config.send_invite_request = !Rails.env.test? # to disable in tests
-  config.resource_attributes = [:uid, :email, :name]
 end
 ```
 
 Configuration options:
 * Service name - name of application
 * Resource name - name of resource on whom authentication is being done
-* Resource attributes - list of resource attributes that will be send to InfinumAzure when new user is created
 
 ### Secrets
 
@@ -64,9 +61,6 @@ infinum_azure:
   client_id: 'client_id_from_InfinumAzure'
   client_secret: 'client_secret_from_InfinumAzure'
   tenant: 'InfinumAzure_tenant'
-  name: 'InfinumAzure_name' # defaults to "azure" -> no need to change unless it's explicitly required
-  policy: 'InfinumAzure_policy' # defaults to "B2C_1_sign_in" -> no need to change unless it's explicitly required
-  scope: 'InfinumAzure_scope' # defaults to "openid" -> no need to change unless it's explicitly required
 ```
 
 ## Usage
@@ -76,20 +70,36 @@ infinum_azure:
     <b>Required columns:</b> email, uid and provider <br />
     <b>Optional columns:</b> name
 
-2. Set same columns in resource attribute config of infinum_azure engine
-
-3. Add following rows to resource model:
+2. Add following rows to resource model:
 
 ```ruby
 devise :omniauthable, omniauth_providers: [:infinum_azure]
 ```
 
-4. Create AuthenticatedController and inherit it in all controllers that needs to be protected with authentication
+3. Use devise's method `#authenticate_user!` to authenticate users on API endpoints
 
 ```ruby
 class AuthenticatedController < ApplicationController
   before_action :authenticate_user!
 end
+```
+
+4. In case your model is named `User`, you can use the `#user_infinum_azure_omniauth_authorize_path` for the login button:
+
+```ruby
+button_to 'Login', user_infinum_azure_omniauth_authorize_path
+```
+
+5. In case you want logging out, you can use `#infinum_azure_logout_path` for logging out of Infinum Azure and your app:
+
+```ruby
+link_to 'Logout', infinum_azure_logout_path
+```
+
+or, if you just want to clear the session, but not log out of Infinum Azure, you can use:
+
+```ruby
+link_to 'Logout', logout_path
 ```
 
 ## License

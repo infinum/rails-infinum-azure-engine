@@ -23,15 +23,15 @@ RSpec.describe InfinumAzure::Resources::Finder do
     it 'returns user if user is found' do
       user = create(:user, email: 'john.doe@example.com')
 
-      auth = instance_double('auth', email: user.email.upcase)
-      response = described_class.from_omniauth_by_email(auth)
+      response = described_class.from_omniauth_by_email(user.email.upcase)
 
       expect(response).to eq(user)
     end
 
     it 'returns nil if user is not found' do
-      auth = instance_double('auth', email: 'example@email.com')
-      response = described_class.from_omniauth(auth)
+      email = 'example@email.com'
+
+      response = described_class.from_omniauth_by_email(email)
 
       expect(response).to be_nil
     end

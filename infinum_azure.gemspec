@@ -36,8 +36,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'pry-byebug'
   spec.add_development_dependency 'pry-rails'
-  spec.add_development_dependency 'rails'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rails', '~> 7.0'
+  spec.add_development_dependency 'rake', '~> 12.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rspec-rails'
   spec.add_development_dependency 'simplecov'
@@ -48,6 +48,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'devise'
   spec.add_dependency 'dry-configurable'
   spec.add_dependency 'http'
-  spec.add_dependency 'omniauth-infinum_azure', '~> 0'
+  spec.add_dependency 'omniauth-infinum_azure', '>= 0.1.6', '< 2.0'
   spec.add_dependency 'responders'
 end

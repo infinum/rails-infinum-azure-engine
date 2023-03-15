@@ -2,6 +2,10 @@
 
 module InfinumAzure
   class ResourcesController < InfinumAzure::ApplicationController
+    def passthru
+      render status: 404, plain: 'Not found. Logout passthru.'
+    end
+
     def destroy
       sign_out current_resource
 

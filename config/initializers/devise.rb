@@ -18,10 +18,5 @@ Devise.setup do |config|
 
   # ==> OmniAuth
   config.omniauth :infinum_azure, InfinumAzure.client_id, InfinumAzure.client_secret,
-                  client_options: {
-                    tenant: InfinumAzure.tenant,
-                    name: InfinumAzure.name,
-                    policy: InfinumAzure.policy,
-                    scope: InfinumAzure.scope
-                  }
+                  client_options: { tenant: InfinumAzure.tenant }
 end
