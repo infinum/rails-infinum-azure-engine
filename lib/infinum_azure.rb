@@ -34,6 +34,10 @@ module InfinumAzure
     dig_secret(:tenant)
   end
 
+  def self.users_auth_url
+    dig_secret(:users_auth_url)
+  end
+
   def self.dig_secret(key)
     Rails.application.secrets.dig(:infinum_azure, key)
   end
