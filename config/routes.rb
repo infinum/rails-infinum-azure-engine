@@ -7,4 +7,12 @@ Rails.application.routes.draw do
   devise_for InfinumAzure.resource_name.pluralize.underscore, controllers: {
     omniauth_callbacks: 'infinum_azure/resources/omniauth_callbacks'
   }
+
+  namespace :infinum_azure do
+    namespace :api do
+      scope '/webhooks', controller: :webhooks do
+        post :upsert_resource_callback
+      end
+    end
+  end
 end

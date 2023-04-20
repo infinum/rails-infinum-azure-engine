@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe InfinumAzure::ResourcesController do
   describe '#passthru' do
     it 'returns status 404' do

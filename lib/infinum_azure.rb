@@ -12,6 +12,11 @@ module InfinumAzure
 
   setting :service_name, reader: true
   setting :resource_name, default: 'User', reader: true
+  setting :resource_attributes, default: [:uid, :email, :first_name, :last_name], reader: true
+
+  def self.provider
+    to_s.underscore
+  end
 
   def self.resource_class
     resource_name.constantize
