@@ -43,12 +43,14 @@ Or install it yourself as:
 InfinumAzure.configure do |config|
   config.service_name = 'Revisor'
   config.resource_name = 'User'
+  config.resource_attributes = [:uid, :email, :first_name, :last_name]
 end
 ```
 
 Configuration options:
 * Service name - name of application
 * Resource name - name of resource on whom authentication is being done
+* Resource attributes - attributes sent from InfinumAzure when user is created/updated that will be permitted
 
 ### Secrets
 
