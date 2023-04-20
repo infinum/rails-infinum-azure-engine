@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    infinum_azure (0.1.0)
+    infinum_azure (0.2.0)
       bundler
       devise
       dry-configurable
