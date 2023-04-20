@@ -12,6 +12,8 @@ module InfinumAzure
           action = 'created'
         end
 
+        InfinumAzure::AfterUpsertResource.call(resource, params[:user])
+
         render json: { resource_name.underscore => action }
       end
 

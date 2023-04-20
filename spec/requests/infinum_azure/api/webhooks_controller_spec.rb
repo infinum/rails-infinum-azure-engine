@@ -2,6 +2,10 @@ RSpec.describe InfinumAzure::Api::WebhooksController do
   describe '#upsert_resource_callback' do
     let(:user_params) { attributes_for(:user) }
 
+    before do
+      allow(InfinumAzure::AfterUpsertResource).to receive(:call).and_return(true)
+    end
+
     it 'updates user if user exists' do
       user = create(:user)
 
@@ -17,6 +21,7 @@ RSpec.describe InfinumAzure::Api::WebhooksController do
         email: user.email,
         provider: 'infinum_azure'
       )
+      expect(InfinumAzure::AfterUpsertResource).to have_received(:call).once
     end
 
     it 'creates user if user does not exist' do
@@ -32,6 +37,7 @@ RSpec.describe InfinumAzure::Api::WebhooksController do
         email: user_params[:email],
         provider: 'infinum_azure'
       )
+      expect(InfinumAzure::AfterUpsertResource).to have_received(:call).once
     end
   end
 end
