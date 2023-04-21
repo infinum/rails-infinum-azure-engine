@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.3.0] - 2023-04-21
+
+- Fix upserting new resource memoization
+
 ## [0.2.1] - 2023-04-20
 
 - Added after_upsert_resource & called it in upsert webhook API after the action
