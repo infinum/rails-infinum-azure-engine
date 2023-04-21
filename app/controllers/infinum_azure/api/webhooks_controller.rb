@@ -8,7 +8,7 @@ module InfinumAzure
           resource.update(user_params)
           action = 'updated'
         else
-          resource_class.create(user_params)
+          @resource = resource_class.create(user_params)
           action = 'created'
         end
 

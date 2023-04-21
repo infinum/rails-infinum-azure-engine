@@ -37,7 +37,8 @@ RSpec.describe InfinumAzure::Api::WebhooksController do
         email: user_params[:email],
         provider: 'infinum_azure'
       )
-      expect(InfinumAzure::AfterUpsertResource).to have_received(:call).once
+      expect(InfinumAzure::AfterUpsertResource)
+        .to have_received(:call).with(User.first, ActionController::Parameters.new(user_params)).once
     end
   end
 end
