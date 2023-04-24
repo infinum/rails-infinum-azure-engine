@@ -69,14 +69,28 @@ infinum_azure:
 
 1. Add columns to resource via migration.
 
-    <b>Required columns:</b> email, uid and provider <br />
-    <b>Optional columns:</b> name
+<b>Required columns:</b>
+* *email* _string_
+* *uid* _string_
+* *provider* _string_
+* *remember_created_at* _datetime_
+* *remember_token* _string_
+
+<b>Optional columns:</b>
+* *first_name* _string_
+* *last_name* _string_
 
 2. Add following rows to resource model:
 
 ```ruby
-devise :omniauthable, omniauth_providers: [:infinum_azure]
+devise :rememberable, :omniauthable, omniauth_providers: [:infinum_azure]
+
+def remember_me
+  true
+end
 ```
+
+_NOTE_: The `#remember_me` method needs to always return *true* in order for users to stay logged in after they shut down their browsers. In case your app has a checkbox for `Remember me` on the login page next to the login button, you can override the return value.
 
 3. Use devise's method `#authenticate_user!` to authenticate users on API endpoints
 

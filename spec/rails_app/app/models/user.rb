@@ -1,7 +1,11 @@
 class User < ApplicationRecord
-  devise :omniauthable, omniauth_providers: [:infinum_azure]
+  devise :rememberable, :omniauthable, omniauth_providers: [:infinum_azure]
 
   validates :email, uniqueness: true
+
+  def remember_me
+    true
+  end
 
   def as_json
     {

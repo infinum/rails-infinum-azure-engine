@@ -8,6 +8,7 @@ RSpec.describe InfinumAzure::Resources::OmniauthCallbacksController do
       get '/users/auth/infinum_azure/callback'
 
       expect(response).to have_http_status(:redirect)
+      expect(user.remember_created_at).to be_present
     end
 
     it 'redirects to root path if user is not found' do
