@@ -43,14 +43,15 @@ Or install it yourself as:
 InfinumAzure.configure do |config|
   config.service_name = 'Revisor'
   config.resource_name = 'User'
-  config.resource_attributes = [:uid, :email, :first_name, :last_name]
+  config.resource_attributes = [:uid, :email, :name, :first_name, :last_name,
+                                :avatar_url, :deactivated_at, :provider_groups]
 end
 ```
 
 Configuration options:
 * Service name - name of application
 * Resource name - name of resource on whom authentication is being done
-* Resource attributes - attributes sent from InfinumAzure when user is created/updated that will be permitted
+* Resource attributes - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
 
 ### Secrets
 
@@ -88,6 +89,10 @@ infinum_azure:
 <b>Optional columns:</b>
 * *first_name* _string_
 * *last_name* _string_
+* *name* _string_
+* *avatar_url* _string_
+* *deactivated_at* _datetime_
+* *provider_groups* _jsonb array_
 
 2. Add following rows to resource model:
 
