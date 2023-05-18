@@ -3,46 +3,42 @@
 module InfinumAzure
   module Users
     class Migration
-      def self.perform(data = {})
-        new(data).perform
+      delegate :user_migration_scope, :user_migration_operation, to: InfinumAzure
+
+      def self.perform(response = {})
+        new(response).perform
       end
 
-      attr_reader :data
+      attr_reader :response
 
-      def initialize(data)
-        @data = data
+      def initialize(response)
+        @response = response
         @users_updated_count = 0
         @emails_not_found = []
       end
 
       def perform
-        InfinumAzure.resource_class.where(provider: 'infinum_id').each(&update_resource)
+        user_migration_scope.call.each do |record|
+          resource = response.find { |object| object['Email'] == record.email }
+          emails_not_found.push(record.email) && next if resource.nil?
+
+          user_migration_operation.call(record, resource)
+          self.users_updated_count += 1
+        end
 
         self
       end
 
       def results
         <<~HEREDOC
-          Users updated count: #{users_updated_count}
-          Emails not found on Infinum Azure AD B2C: #{emails_not_found}
+          Count of updated resources: #{users_updated_count}
+          Emails not found on Infinum Azure AD B2C: #{emails_not_found.size}
+          Emails:
+          #{emails_not_found.join("\n")}
         HEREDOC
       end
 
       private
-
-      def update_resource
-        lambda do |resource|
-          matching_user = data.find { |user| user['PrimaryEmail'] == resource.email }
-
-          if matching_user.present?
-            resource.update_attribute(:provider, 'infinum_azure')
-            resource.update_attribute(:uid, matching_user['Id'])
-            self.users_updated_count += 1
-          else
-            emails_not_found.push(resource.email)
-          end
-        end
-      end
 
       attr_accessor :users_updated_count, :emails_not_found
     end

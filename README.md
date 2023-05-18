@@ -45,13 +45,21 @@ InfinumAzure.configure do |config|
   config.resource_name = 'User'
   config.resource_attributes = [:uid, :email, :name, :first_name, :last_name,
                                 :avatar_url, :deactivated_at, :provider_groups]
+
+  config.user_migration_scope = -> { resource_class.where(provider: 'infinum_id') }
+  config.user_migration_operation = > (record, resource) {
+    record.update_attribute(:provider, 'infinum_azure')
+    record.update_attribute(:uid, resource['Uid'])
+  }
 end
 ```
 
 Configuration options:
-* Service name - name of application
-* Resource name - name of resource on whom authentication is being done
-* Resource attributes - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
+* service_name - name of application
+* resource_name - name of resource on whom authentication is being done
+* resource_attributes - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
+* user_migration_scope - a block that will be used to get the initial collection of resources (if blank, default is written above)
+* user_migration_operation - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found
 
 ### Secrets
 

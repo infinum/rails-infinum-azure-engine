@@ -15,6 +15,14 @@ module InfinumAzure
   setting :resource_attributes, default: [:uid, :email, :name, :first_name, :last_name,
                                           :avatar_url, :deactivated_at, :provider_groups], reader: true
 
+  setting :user_migration_scope, default: -> { resource_class.where(provider: 'infinum_id') }, reader: true
+  setting :user_migration_operation,
+          default: -> (record, resource) {
+            record.update_attribute(:provider, provider)
+            record.update_attribute(:uid, resource['Uid'])
+          },
+          reader: true
+
   def self.provider
     to_s.underscore
   end
