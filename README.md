@@ -156,26 +156,6 @@ link_to 'Login', user_infinum_azure_omniauth_authorize_path, method: :post
 
 or, simply with `#button_to` as mentioned above.
 
-## Migration from Infinum ID (WIP - don't start the process yet)
-
-The migration needs to be done in steps:
-
-0. Substitute the `infinum_id` gem with this one, and deploy. Ensure the version is set to 0.1.0! Announce to anyone that's heavily using the app that logging in will be down for a few minutes. Continue to step 1.
-
-1. Since we're switching from Infinum ID to Azure identity provider, the `provider` and the `uid` attributes for each user will change. We need to use the `email` as a primary identifier. The problem is that Infinum also changed the primary domain from `@infinum.hr` to `@infinum.com`. So the first step is to update all user emails to have `@infinum.com` domain. Ensure the following code is successful:
-
-```ruby
-User.all.group_by { |u| u.email.split('@').last }.select { |domain, users| domain != 'infinum.com' }.each { |domain, users| users.each { |u| u.update_attribute(:email, u.email.gsub(domain, 'infinum.com')) } }
-```
-
-Logging in will be working again now. Test it and inform users. Continue to step 2.
-
-2. The next step will be to run the rake task `infinum_azure:migrate_users`, which will use the Azure API endpoint and update all user `uid` attributes to the Azure uid value, and the `provider` value to "infinum_azure". This rake task can be executed multiple times. The goal is for all users to have the `provider` set to "infinum_azure". We depend on the user migration from Infinum ID to Infinum Azure, so some users might still be missing. If you have users that aren't migrated, report to Slack #product-infinum-auth channel.
-
-3. The last step is to bump to a new version of `infinum_azure` (will probably be 1.0.0), which will stop using the `email` as the unique identifier for logging in, and go back to using the `provider` and `uid`.
-
-4. The subsequent versions will also have to contain the webhook API endpoints that will update user records when a change happens on Infinum Azure. (TBD)
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
