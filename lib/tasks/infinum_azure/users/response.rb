@@ -3,15 +3,14 @@
 module InfinumAzure
   module Users
     class Response
-      attr_reader :raw_response, :status
+      attr_reader :raw_response
 
       def initialize(raw_response)
         @raw_response = raw_response
-        @status = raw_response.status
       end
 
       def success?
-        status.ok?
+        raw_response.is_a?(Net::HTTPSuccess)
       end
 
       def body
@@ -21,14 +20,14 @@ module InfinumAzure
       private
 
       def success_json
-        JSON.parse(raw_response.body.to_s)
+        JSON.parse(raw_response.body)
       end
 
       def error_json
         {
           error: {
-            status: raw_response.status.to_i,
-            details: raw_response.body.to_s
+            status: raw_response.code.to_i,
+            details: raw_response.body
           }
         }
       end

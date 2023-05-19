@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'uri'
+require 'net/http'
 require_relative 'response'
 
 module InfinumAzure
@@ -10,7 +12,9 @@ module InfinumAzure
       def self.execute
         raise 'infinum_azure_users_auth_url secret required for this rake task' if URL.blank?
 
-        Response.new(HTTP.get(URL))
+        uri = URI(URL)
+
+        Response.new(Net::HTTP.get_response(uri))
       end
     end
   end

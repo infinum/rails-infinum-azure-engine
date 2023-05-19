@@ -9,5 +9,11 @@ module RailsApp
     config.root = File.expand_path('..', __dir__)
     config.i18n.enforce_available_locales = true
     config.active_record.legacy_connection_handling = false
+
+    InfinumAzure.config.service_name = 'Specs'
+    InfinumAzure.config.resource_name = 'User'
+    InfinumAzure.config.resource_attributes = [
+      :uid, :email, :name, :first_name, :last_name, :avatar_url, :deactivated_at, :provider_groups
+    ]
   end
 end

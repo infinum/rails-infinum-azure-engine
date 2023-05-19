@@ -29,8 +29,6 @@ Or install it yourself as:
 ## Dependencies
 
 * [Devise](https://github.com/plataformatec/devise)
-* [Dry configurable](https://github.com/dry-rb/dry-configurable)
-* [Http](https://github.com/httprb/http)
 * [Omniauth::InfinumAzure](https://github.com/infinum/ruby-infinum-azure-omniauth)
 
 ## Configuration
@@ -55,11 +53,11 @@ end
 ```
 
 Configuration options:
-* service_name - name of application
-* resource_name - name of resource on whom authentication is being done
-* resource_attributes - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
-* user_migration_scope - a block that will be used to get the initial collection of resources (if blank, default is written above)
-* user_migration_operation - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found
+* service_name(mandatory) - name of application
+* resource_name(mandatory) - name of resource on whom authentication is being done
+* resource_attributes(optional) - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
+* user_migration_scope(optional) - a block that will be used to get the initial collection of resources (if blank, default is written above)
+* user_migration_operation(optional) - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found
 
 ### Secrets
 
