@@ -57,7 +57,7 @@ Configuration options:
 * resource_name(mandatory) - name of resource on whom authentication is being done
 * resource_attributes(optional) - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
 * user_migration_scope(optional) - a block that will be used to get the initial collection of resources (if blank, default is written above)
-* user_migration_operation(optional) - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found
+* user_migration_operation(optional) - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found. The resource is a Hash containing the following properties: 'Uid', 'FirstName', 'LastName', 'Email'
 
 ### Secrets
 
