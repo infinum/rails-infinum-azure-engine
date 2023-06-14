@@ -8,7 +8,7 @@ module InfinumAzure
     }.freeze
     OPTIONAL = {
       resource_attributes: [
-        :uid, :email, :name, :first_name, :last_name, :avatar_url, :deactivated_at, :provider_groups
+        :uid, :email, :first_name, :last_name, :avatar_url, :deactivated_at, :provider_groups, :employee
       ],
       user_migration_scope: -> { InfinumAzure.resource_class.where(provider: 'infinum_id') },
       user_migration_operation: ->(record, resource) {

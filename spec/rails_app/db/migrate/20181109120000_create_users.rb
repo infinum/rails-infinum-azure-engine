@@ -6,9 +6,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
 
-      t.string :slack_username
-      t.string :time_zone
-
       t.string :avatar_url
 
       # Omniauth
@@ -16,6 +13,11 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :uid
 
       t.datetime :deactivated_at
+      t.string :provider_groups
+      t.boolean :employee
+
+      t.datetime :remember_created_at
+      t.string :remember_token
 
       t.timestamps null: false
     end

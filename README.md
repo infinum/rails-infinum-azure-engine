@@ -41,8 +41,8 @@ Or install it yourself as:
 InfinumAzure.configure do |config|
   config.service_name = 'Revisor'
   config.resource_name = 'User'
-  config.resource_attributes = [:uid, :email, :name, :first_name, :last_name,
-                                :avatar_url, :deactivated_at, :provider_groups]
+  config.resource_attributes = [:uid, :email, :first_name, :last_name, :avatar_url,
+                                :deactivated_at, :provider_groups, :employee]
 
   config.user_migration_scope = -> { resource_class.where(provider: 'infinum_id') }
   config.user_migration_operation = > (record, resource) {
@@ -57,7 +57,14 @@ Configuration options:
 * resource_name(mandatory) - name of resource on whom authentication is being done
 * resource_attributes(optional) - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
 * user_migration_scope(optional) - a block that will be used to get the initial collection of resources (if blank, default is written above)
-* user_migration_operation(optional) - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found. The resource is a Hash containing the following properties: 'Uid', 'FirstName', 'LastName', 'Email'
+* user_migration_operation(optional) - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found. The resource is a Hash containing the following properties:
+  * `Uid` - string
+  * `FirstName` - string || null
+  * `LastName` - string || null
+  * `Email` - string
+  * `AvatarUrl` - string || null
+  * `UserGroup` - string || null -> a comma separated list; if "employees" is present, the user is an employee
+  * `Deactivated` - boolean
 
 ### Secrets
 
@@ -95,10 +102,10 @@ infinum_azure:
 <b>Optional columns:</b>
 * *first_name* _string_
 * *last_name* _string_
-* *name* _string_
 * *avatar_url* _string_
 * *deactivated_at* _datetime_
 * *provider_groups* _jsonb array_
+* *employee* _boolean_
 
 2. Add following rows to resource model:
 

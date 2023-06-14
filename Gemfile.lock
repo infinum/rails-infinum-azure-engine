@@ -4,7 +4,7 @@ PATH
     infinum_azure (0.3.0)
       bundler
       devise
-      omniauth-infinum_azure (>= 0.1.6, < 2.0)
+      omniauth-infinum_azure (>= 0.3.0, < 2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -148,7 +148,7 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
-    omniauth-infinum_azure (0.1.6)
+    omniauth-infinum_azure (0.3.0)
       omniauth-oauth2
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
