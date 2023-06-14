@@ -47,7 +47,7 @@ InfinumAzure.configure do |config|
   config.user_migration_scope = -> { resource_class.where(provider: 'infinum_id') }
   config.user_migration_operation = > (record, resource) {
     record.update_attribute(:provider, 'infinum_azure')
-    record.update_attribute(:uid, resource['Uid'])
+    record.update_attribute(:uid, resource['uid'])
   }
 end
 ```
@@ -58,13 +58,13 @@ Configuration options:
 * resource_attributes(optional) - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
 * user_migration_scope(optional) - a block that will be used to get the initial collection of resources (if blank, default is written above)
 * user_migration_operation(optional) - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found. The resource is a Hash containing the following properties:
-  * `Uid` - string
-  * `FirstName` - string || null
-  * `LastName` - string || null
-  * `Email` - string
-  * `AvatarUrl` - string || null
-  * `UserGroup` - string || null -> a comma separated list; if "employees" is present, the user is an employee
-  * `Deactivated` - boolean
+  * `uid` - string
+  * `first_name` - string || null
+  * `last_name` - string || null
+  * `email` - string
+  * `avatar_url` - string || null
+  * `groups` - string || null -> a comma separated list; if "employees" is present, the user is an employee
+  * `deactivated` - boolean
 
 ### Secrets
 
