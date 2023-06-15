@@ -12,7 +12,7 @@ module InfinumAzure
           action = 'created'
         end
 
-        InfinumAzure::AfterUpsertResource.call(resource, user_params)
+        InfinumAzure::AfterUpsertResource.call(resource, normalized_azure_params)
 
         render json: { resource_name.underscore => action }
       end
@@ -26,14 +26,15 @@ module InfinumAzure
       end
 
       def user_params
-        InfinumAzure::Resources::Params
-          .normalize(azure_params)
+        normalized_azure_params
           .slice(*InfinumAzure.resource_attributes)
           .merge(provider: InfinumAzure.provider)
       end
 
-      def azure_params
-        params.require(:user).permit!.to_h.symbolize_keys
+      def normalized_azure_params
+        InfinumAzure::Resources::Params.normalize(
+          params.require(:user).permit!.to_h.symbolize_keys
+        )
       end
     end
   end

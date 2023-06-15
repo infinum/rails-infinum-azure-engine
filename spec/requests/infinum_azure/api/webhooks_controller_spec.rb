@@ -39,7 +39,6 @@ RSpec.describe InfinumAzure::Api::WebhooksController do
     it 'creates user if user does not exist' do
       expected_params = {
         uid: user_params[:uid],
-        provider: 'infinum_azure',
         email: user_params[:email],
         first_name: user_params[:first_name],
         last_name: user_params[:last_name],
