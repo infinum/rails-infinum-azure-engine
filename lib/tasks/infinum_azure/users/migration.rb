@@ -19,7 +19,7 @@ module InfinumAzure
 
       def perform
         user_migration_scope.call.each do |record|
-          resource = response.find { |object| object['Email'] == record.email }
+          resource = response.find { |object| object['email'] == record.email }
           emails_not_found.push(record.email) && next if resource.nil?
 
           user_migration_operation.call(record, resource)
