@@ -1,5 +1,15 @@
 ## [Unreleased]
 
+## [0.4.0] - 2023-06-15
+
+- Slim down the gem (remove dependencies and transient dependencies):
+  - dry-configurable
+  - http
+  - responders
+- Add `avatar_url`, `deactivated_at`, `provider_groups` and `employee` as selectable *resource_attributes*
+- Add rake task `infinum_azure:migrate_users` for migrating users (updating `uid` values from Infinum ID to Infinum Azure)
+- Update Readme
+
 ## [0.3.0] - 2023-04-21
 
 - Fix upserting new resource memoization
