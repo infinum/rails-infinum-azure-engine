@@ -3,38 +3,58 @@
 require 'omniauth/infinum_azure'
 require 'infinum_azure/version'
 require 'infinum_azure/engine'
-require 'dry-configurable'
+require 'infinum_azure/defaults'
+require 'infinum_azure/config'
 require 'devise'
-require 'http'
 
 module InfinumAzure
-  extend Dry::Configurable
+  Error = Class.new(StandardError)
 
-  setting :service_name, reader: true
-  setting :resource_name, default: 'User', reader: true
-  setting :resource_attributes, default: [:uid, :email, :first_name, :last_name], reader: true
+  class << self
+    def configure
+      yield config if block_given?
 
-  def self.provider
-    to_s.underscore
-  end
+      ensure_all_attributes_present!
+    end
 
-  def self.resource_class
-    resource_name.constantize
-  end
+    def config
+      @config ||= Config.new
+    end
 
-  def self.client_id
-    dig_secret(:client_id)
-  end
+    def ensure_all_attributes_present!
+      Defaults.all_attribute_names.each do |attribute|
+        raise Error, "InfinumAzure attribute '@#{attribute}' not set" if config.public_send(attribute).blank?
+      end
+    end
 
-  def self.client_secret
-    dig_secret(:client_secret)
-  end
+    delegate(*Defaults.all_attribute_names, to: :config)
 
-  def self.tenant
-    dig_secret(:tenant)
-  end
+    def provider
+      to_s.underscore
+    end
 
-  def self.dig_secret(key)
-    Rails.application.secrets.dig(:infinum_azure, key)
+    def resource_class
+      resource_name.constantize
+    end
+
+    def client_id
+      dig_secret(:client_id)
+    end
+
+    def client_secret
+      dig_secret(:client_secret)
+    end
+
+    def tenant
+      dig_secret(:tenant)
+    end
+
+    def users_auth_url
+      dig_secret(:users_auth_url)
+    end
+
+    def dig_secret(key)
+      Rails.application.secrets.dig(:infinum_azure, key)
+    end
   end
 end

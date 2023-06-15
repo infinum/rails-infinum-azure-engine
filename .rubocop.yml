@@ -14,6 +14,9 @@ Style/Documentation:
 Style/SymbolArray:
   Enabled: false
 
+Style/Lambda:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
     - '**/*.rake'

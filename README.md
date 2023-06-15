@@ -29,8 +29,6 @@ Or install it yourself as:
 ## Dependencies
 
 * [Devise](https://github.com/plataformatec/devise)
-* [Dry configurable](https://github.com/dry-rb/dry-configurable)
-* [Http](https://github.com/httprb/http)
 * [Omniauth::InfinumAzure](https://github.com/infinum/ruby-infinum-azure-omniauth)
 
 ## Configuration
@@ -43,18 +41,36 @@ Or install it yourself as:
 InfinumAzure.configure do |config|
   config.service_name = 'Revisor'
   config.resource_name = 'User'
-  config.resource_attributes = [:uid, :email, :first_name, :last_name]
+  config.resource_attributes = [:uid, :email, :first_name, :last_name, :avatar_url,
+                                :deactivated_at, :provider_groups, :employee]
+
+  config.user_migration_scope = -> { resource_class.where(provider: 'infinum_id') }
+  config.user_migration_operation = > (record, resource) {
+    record.update_attribute(:provider, 'infinum_azure')
+    record.update_attribute(:uid, resource['uid'])
+  }
 end
 ```
 
 Configuration options:
-* Service name - name of application
-* Resource name - name of resource on whom authentication is being done
-* Resource attributes - attributes sent from InfinumAzure when user is created/updated that will be permitted
+* service_name(mandatory) - name of application
+* resource_name(mandatory) - name of resource on whom authentication is being done
+* resource_attributes(optional) - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
+* user_migration_scope(optional) - a block that will be used to get the initial collection of resources (if blank, default is written above)
+* user_migration_operation(optional) - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found. The resource is a Hash containing the following properties:
+  * `uid` - string
+  * `first_name` - string || null
+  * `last_name` - string || null
+  * `email` - string
+  * `avatar_url` - string || null
+  * `groups` - string || null -> a comma separated list; if "employees" is present, the user is an employee
+  * `deactivated` - boolean
 
 ### Secrets
 
-Needed secrets:
+Secrets should be kept in `config/secrets.yml` file.
+
+Required ones are:
 
 ```ruby
 # config/secrets.yml
@@ -63,6 +79,13 @@ infinum_azure:
   client_id: 'client_id_from_InfinumAzure'
   client_secret: 'client_secret_from_InfinumAzure'
   tenant: 'InfinumAzure_tenant'
+```
+
+Optional ones are:
+
+```ruby
+infinum_azure:
+  users_auth_url: 'InfinumAzure_users_auth_url_with_api_code' # required only if infinum_azure:migrate_users rake task is used
 ```
 
 ## Usage
@@ -79,6 +102,10 @@ infinum_azure:
 <b>Optional columns:</b>
 * *first_name* _string_
 * *last_name* _string_
+* *avatar_url* _string_
+* *deactivated_at* _datetime_
+* *provider_groups* _jsonb array_
+* *employee* _boolean_
 
 2. Add following rows to resource model:
 

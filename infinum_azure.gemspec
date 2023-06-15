@@ -46,8 +46,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'bundler'
   spec.add_dependency 'devise'
-  spec.add_dependency 'dry-configurable'
-  spec.add_dependency 'http'
-  spec.add_dependency 'omniauth-infinum_azure', '>= 0.1.6', '< 2.0'
-  spec.add_dependency 'responders'
+  spec.add_dependency 'omniauth-infinum_azure', '>= 0.3.0', '< 2.0'
 end

@@ -4,10 +4,7 @@ PATH
     infinum_azure (0.3.0)
       bundler
       devise
-      dry-configurable
-      http
-      omniauth-infinum_azure (>= 0.1.6, < 2.0)
-      responders
+      omniauth-infinum_azure (>= 0.3.0, < 2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -96,14 +93,6 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
-    dry-configurable (1.0.1)
-      dry-core (~> 1.0, < 2)
-      zeitwerk (~> 2.6)
-    dry-core (1.0.0)
-      concurrent-ruby (~> 1.0)
-      zeitwerk (~> 2.6)
     erubi (1.12.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -116,24 +105,10 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
-    ffi (1.15.5)
-    ffi-compiler (1.0.1)
-      ffi (>= 1.0.0)
-      rake
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
     hashie (5.0.0)
-    http (4.4.1)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 2.2)
-      http-parser (~> 1.2.0)
-    http-cookie (1.0.5)
-      domain_name (~> 0.5)
-    http-form_data (2.3.0)
-    http-parser (1.2.3)
-      ffi-compiler (>= 1.0, < 2.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jwt (2.7.0)
@@ -173,7 +148,7 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
-    omniauth-infinum_azure (0.1.6)
+    omniauth-infinum_azure (0.3.0)
       omniauth-oauth2
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
@@ -261,9 +236,6 @@ GEM
     timeout (0.3.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.8.2)
     version_gem (1.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
