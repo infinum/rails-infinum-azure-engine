@@ -14,7 +14,7 @@ module InfinumAzure
       end
 
       def body
-        @body ||= success? ? success_json['Value'] : error_json
+        @body ||= success? ? success_json : error_json
       end
 
       private
