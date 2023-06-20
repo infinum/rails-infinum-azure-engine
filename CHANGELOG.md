@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+## [1.0.0] - 2023-06-20
+
+#### Breaking change
+
+This change switches from using the `email` as a match for finding which user logged in to `uid` and `provider`. Before you move to 1.0.0 usage, you need to ensure your user data has been migrated to Infinum Azure. Ensure all `uid` values are updated and `provider` is set to "infinum_azure".
+
 ## [0.4.2] - 2023-06-20
 
 - Fix bug: Always set `provider` to "infinum_azure" in default #user_migration_operation
