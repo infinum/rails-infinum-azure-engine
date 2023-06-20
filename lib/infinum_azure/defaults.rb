@@ -12,7 +12,7 @@ module InfinumAzure
       ],
       user_migration_scope: -> { InfinumAzure.resource_class.where(provider: 'infinum_id') },
       user_migration_operation: ->(record, resource) {
-        record.update_attribute(:provider, provider)
+        record.update_attribute(:provider, 'infinum_azure')
         record.update_attribute(:uid, resource['uid'])
       }
     }.freeze
