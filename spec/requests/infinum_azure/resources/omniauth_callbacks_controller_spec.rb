@@ -3,7 +3,7 @@ RSpec.describe InfinumAzure::Resources::OmniauthCallbacksController do
     let(:user) { create(:user) }
 
     it 'signs in and redirects user if user was found' do
-      allow(InfinumAzure::Resources::Finder).to receive(:from_omniauth_by_email).and_return(user)
+      allow(InfinumAzure::Resources::Finder).to receive(:from_omniauth).and_return(user)
 
       get '/users/auth/infinum_azure/callback'
 
@@ -12,7 +12,7 @@ RSpec.describe InfinumAzure::Resources::OmniauthCallbacksController do
     end
 
     it 'redirects to root path if user is not found' do
-      allow(InfinumAzure::Resources::Finder).to receive(:from_omniauth_by_email).and_return(nil)
+      allow(InfinumAzure::Resources::Finder).to receive(:from_omniauth).and_return(nil)
 
       get '/users/auth/infinum_azure/callback'
 

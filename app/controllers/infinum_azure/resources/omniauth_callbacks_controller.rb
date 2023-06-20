@@ -4,7 +4,7 @@ module InfinumAzure
   module Resources
     class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       def infinum_azure
-        resource = InfinumAzure::Resources::Finder.from_omniauth_by_email(omniauth['info']['email'])
+        resource = InfinumAzure::Resources::Finder.from_omniauth(omniauth)
 
         if resource
           flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Azure'
