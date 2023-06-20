@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.4.1] - 2023-06-20
+
+- Remove `Value` JSON wrapper from Azure Users API response
+
 ## [0.4.0] - 2023-06-15
 
 - Slim down the gem (remove dependencies and transient dependencies):
