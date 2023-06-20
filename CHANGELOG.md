@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+## [0.4.2] - 2023-06-20
+
+- Fix bug: Always set `provider` to "infinum_azure" in default #user_migration_operation
 ## [0.4.1] - 2023-06-20
 
 - Remove `Value` JSON wrapper from Azure Users API response
