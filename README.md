@@ -45,7 +45,7 @@ InfinumAzure.configure do |config|
                                 :deactivated_at, :provider_groups, :employee]
 
   config.user_migration_scope = -> { resource_class.where(provider: 'infinum_id') }
-  config.user_migration_operation = > (record, resource) {
+  config.user_migration_operation = -> (record, resource) {
     record.update_attribute(:provider, 'infinum_azure')
     record.update_attribute(:uid, resource['uid'])
   }
