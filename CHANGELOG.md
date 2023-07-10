@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [1.1.0] - 2023-07-10
+
+- Fix bug: Use pluralized resource_name for generating the logout paths
+
 ## [1.0.0] - 2023-06-20
 
 #### Breaking change
