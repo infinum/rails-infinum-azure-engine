@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.4.3] - 2023-07-10
+
+- Fix bug: Use pluralized resource_name for generating the logout paths
+
 ## [0.4.2] - 2023-06-20
 
 - Fix bug: Always set `provider` to "infinum_azure" in default #user_migration_operation
