@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get '/users/auth/infinum_azure/logout', to: 'infinum_azure/resources#passthru', as: :infinum_azure_logout
-  get '/users/auth/logout', to: 'infinum_azure/resources#destroy', as: :logout
+  get "/#{InfinumAzure.resource_name.pluralize.underscore}/auth/infinum_azure/logout",
+      to: 'infinum_azure/resources#passthru',
+      as: :infinum_azure_logout
+  get "/#{InfinumAzure.resource_name.pluralize.underscore}/auth/logout",
+      to: 'infinum_azure/resources#destroy',
+      as: :logout
 
   devise_for InfinumAzure.resource_name.pluralize.underscore, controllers: {
     omniauth_callbacks: 'infinum_azure/resources/omniauth_callbacks'
