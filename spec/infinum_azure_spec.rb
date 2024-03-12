@@ -92,6 +92,12 @@ RSpec.describe InfinumAzure do
       end
     end
 
+    describe '.domain' do
+      it 'returns value from secrets' do
+        expect(described_class.domain).to eq('https://login.b2c.com')
+      end
+    end
+
     describe '.tenant' do
       it 'returns value from secrets' do
         expect(described_class.tenant).to eq('infinumtest')

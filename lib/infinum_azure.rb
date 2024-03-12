@@ -45,6 +45,10 @@ module InfinumAzure
       dig_secret(:client_secret)
     end
 
+    def domain
+      dig_secret(:domain)
+    end
+
     def tenant
       dig_secret(:tenant)
     end

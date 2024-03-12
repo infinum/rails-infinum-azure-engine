@@ -78,6 +78,7 @@ Required ones are:
 infinum_azure:
   client_id: 'client_id_from_InfinumAzure'
   client_secret: 'client_secret_from_InfinumAzure'
+  domain: 'https://login.b2c.com'
   tenant: 'InfinumAzure_tenant'
 ```
 
