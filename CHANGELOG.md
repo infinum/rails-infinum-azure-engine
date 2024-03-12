@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [2.0.0] - 2024-03-12
+
+**BREAKING CHANGE**
+- Add `domain` client option - versions that use the transient dependency `omniauth-infinum_azure` prior to version 1 will not break, but are deprecated and will raise errors in version 2
+
 ## [1.1.0] - 2023-07-10
 
 - Fix bug: Use pluralized resource_name for generating the logout paths
