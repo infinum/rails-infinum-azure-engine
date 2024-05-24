@@ -7,7 +7,6 @@ InfinumAzure Engine is gem for resource authentication with Infinum Azure AD ser
 - [Dependencies](#dependencies)
 - [Configuration](#configuration)
   * [InfinumAzure](#infinumazure)
-  * [Secrets](#secrets)
 - [Usage](#usage)
 
 ## Installation
@@ -65,29 +64,6 @@ Configuration options:
   * `avatar_url` - string || null
   * `groups` - string || null -> a comma separated list; if "employees" is present, the user is an employee
   * `deactivated` - boolean
-
-### Secrets
-
-Secrets should be kept in `config/secrets.yml` file.
-
-Required ones are:
-
-```ruby
-# config/secrets.yml
-
-infinum_azure:
-  client_id: 'client_id_from_InfinumAzure'
-  client_secret: 'client_secret_from_InfinumAzure'
-  domain: 'https://login.b2c.com'
-  tenant: 'InfinumAzure_tenant'
-```
-
-Optional ones are:
-
-```ruby
-infinum_azure:
-  users_auth_url: 'InfinumAzure_users_auth_url_with_api_code' # required only if infinum_azure:migrate_users rake task is used
-```
 
 ## Usage
 
