@@ -48,6 +48,11 @@ InfinumAzure.configure do |config|
     record.update_attribute(:provider, 'infinum_azure')
     record.update_attribute(:uid, resource['uid'])
   }
+  config.client_id = 'client-id'
+  config.client_secret = 'client-secret'
+  config.domain = 'https://login.b2c.com'
+  config.tenant = 'tenant'
+  config.users_auth_url = 'https://example.com'
 end
 ```
 
@@ -64,6 +69,11 @@ Configuration options:
   * `avatar_url` - string || null
   * `groups` - string || null -> a comma separated list; if "employees" is present, the user is an employee
   * `deactivated` - boolean
+* client_id(mandatory) - client ID
+* client_secret(mandatory) - client secret
+* domain(mandatory) - Identity service domain
+* tenant(mandatory) - Tenant id
+* users_auth_url(optional)
 
 ## Usage
 

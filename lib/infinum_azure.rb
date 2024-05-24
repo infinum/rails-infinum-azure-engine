@@ -13,6 +13,7 @@ module InfinumAzure
     def configure
       yield config if block_given?
 
+      config.validate!
     end
 
     def config
@@ -24,6 +25,7 @@ module InfinumAzure
     end
 
     def resource_class
+      config.resource_name.constantize
     end
   end
 end

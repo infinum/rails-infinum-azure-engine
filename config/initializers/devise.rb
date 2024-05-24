@@ -19,9 +19,11 @@ Devise.setup do |config|
   config.sign_out_via = :get
 
   # ==> OmniAuth
-  config.omniauth :infinum_azure, InfinumAzure.client_id, InfinumAzure.client_secret,
+  config.omniauth :infinum_azure,
+                  InfinumAzure.config.client_id,
+                  InfinumAzure.config.client_secret,
                   client_options: {
-                    domain: InfinumAzure.domain,
-                    tenant: InfinumAzure.tenant
+                    domain: InfinumAzure.config.domain,
+                    tenant: InfinumAzure.config.tenant
                   }
 end

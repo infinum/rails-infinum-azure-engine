@@ -27,7 +27,7 @@ module InfinumAzure
 
       def user_params
         normalized_azure_params
-          .slice(*InfinumAzure.resource_attributes)
+          .slice(*InfinumAzure.config.resource_attributes)
           .merge(provider: InfinumAzure.provider)
       end
 
