@@ -9,8 +9,8 @@ module InfinumAzure
       :uid, :email, :first_name, :last_name, :avatar_url, :deactivated_at, :provider_groups, :employee
     ].freeze
 
-    attr_accessor :service_name, :resource_name, :resource_attributes, :user_migration_scope,
-                  :user_migration_operation, :client_id, :client_secret, :domain, :tenant, :users_auth_url
+    attr_accessor :resource_name, :resource_attributes, :user_migration_scope, :user_migration_operation, :client_id,
+                  :client_secret, :domain, :tenant, :users_auth_url
 
     def initialize
       self.resource_attributes = DEFAULT_RESOURCE_ATTRIBUTES
@@ -22,8 +22,8 @@ module InfinumAzure
     end
 
     def validate!
-      [:service_name, :resource_name, :resource_attributes, :user_migration_scope,
-       :user_migration_operation, :client_id, :client_secret, :domain, :tenant].each do |attribute|
+      [:resource_name, :resource_attributes, :user_migration_scope, :user_migration_operation, :client_id,
+       :client_secret, :domain, :tenant].each do |attribute|
         raise InfinumAzure::Error, "InfinumAzure attribute '@#{attribute}' not set" if public_send(attribute).blank?
       end
     end

@@ -38,7 +38,6 @@ Or install it yourself as:
 # config/initializers/infinum_azure.rb
 
 InfinumAzure.configure do |config|
-  config.service_name = 'Revisor'
   config.resource_name = 'User'
   config.resource_attributes = [:uid, :email, :first_name, :last_name, :avatar_url,
                                 :deactivated_at, :provider_groups, :employee]
@@ -57,7 +56,6 @@ end
 ```
 
 Configuration options:
-* service_name(mandatory) - name of application
 * resource_name(mandatory) - name of resource on whom authentication is being done
 * resource_attributes(optional) - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
 * user_migration_scope(optional) - a block that will be used to get the initial collection of resources (if blank, default is written above)

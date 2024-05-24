@@ -8,7 +8,6 @@ RSpec.describe InfinumAzure do
   describe '.configure' do
     it 'yields config' do
       described_class.configure do |config|
-        config.service_name = 'Example'
         config.resource_name = 'User'
         config.user_migration_operation = -> { 'from_block' }
         config.client_id = 'client-id'
@@ -18,7 +17,6 @@ RSpec.describe InfinumAzure do
         config.users_auth_url = 'https://example.com'
       end
 
-      expect(described_class.config.service_name).to eq('Example')
       expect(described_class.config.resource_name).to eq('User')
       expect(described_class.config.resource_attributes).to be_a(Array)
       expect(described_class.config.user_migration_scope.call).to be_a(ActiveRecord::Relation)
