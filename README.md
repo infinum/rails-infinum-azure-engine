@@ -56,7 +56,11 @@ end
 ```
 
 Configuration options:
+* client_id(mandatory) - client ID
+* client_secret(mandatory) - client secret
+* domain(mandatory) - Identity service domain
 * resource_name(mandatory) - name of resource on whom authentication is being done
+* tenant(mandatory) - Tenant id
 * resource_attributes(optional) - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
 * user_migration_scope(optional) - a block that will be used to get the initial collection of resources (if blank, default is written above)
 * user_migration_operation(optional) - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found. The resource is a Hash containing the following properties:
@@ -67,10 +71,6 @@ Configuration options:
   * `avatar_url` - string || null
   * `groups` - string || null -> a comma separated list; if "employees" is present, the user is an employee
   * `deactivated` - boolean
-* client_id(mandatory) - client ID
-* client_secret(mandatory) - client secret
-* domain(mandatory) - Identity service domain
-* tenant(mandatory) - Tenant id
 * users_auth_url(optional)
 
 ## Usage
