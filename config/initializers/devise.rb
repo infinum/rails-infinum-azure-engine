@@ -17,13 +17,4 @@ Devise.setup do |config|
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
 
   config.sign_out_via = :get
-
-  # ==> OmniAuth
-  config.omniauth :infinum_azure,
-                  InfinumAzure.config.client_id,
-                  InfinumAzure.config.client_secret,
-                  client_options: {
-                    domain: InfinumAzure.config.domain,
-                    tenant: InfinumAzure.config.tenant
-                  }
 end
