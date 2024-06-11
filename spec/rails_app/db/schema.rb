@@ -10,22 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2018_11_09_120000) do
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "avatar_url"
-    t.string "provider"
-    t.string "uid"
-    t.datetime "deactivated_at", precision: nil
-    t.string "provider_groups"
-    t.boolean "employee"
-    t.datetime "remember_created_at", precision: nil
-    t.string "remember_token"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+ActiveRecord::Schema[7.0].define(version: 20_181_109_120_000) do
+  create_table 'users', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.string 'first_name'
+    t.string 'last_name'
+    t.string 'avatar_url'
+    t.string 'provider'
+    t.string 'uid'
+    t.datetime 'deactivated_at', precision: nil
+    t.string 'provider_groups'
+    t.boolean 'employee'
+    t.datetime 'remember_created_at', precision: nil
+    t.string 'remember_token'
+    t.datetime 'created_at', precision: nil, null: false
+    t.datetime 'updated_at', precision: nil, null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
   end
-
 end

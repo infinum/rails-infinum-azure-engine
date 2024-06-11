@@ -38,10 +38,8 @@ module InfinumAzure
       end
 
       def as_json
-        NORMALIZATIONS.keys.reduce({}) do |hash, key|
+        NORMALIZATIONS.keys.each_with_object({}) do |key, hash|
           hash[key] = instance_variable_get("@#{key}")
-
-          hash
         end
       end
 
