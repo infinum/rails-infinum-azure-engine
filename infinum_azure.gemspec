@@ -5,8 +5,8 @@ require_relative 'lib/infinum_azure/version'
 Gem::Specification.new do |spec|
   spec.name = 'infinum_azure'
   spec.version = InfinumAzure::VERSION
-  spec.authors = ['Marko Ćilimković']
-  spec.email = ['marko.cilimkovic@infinum.hr']
+  spec.authors = ['Rails team']
+  spec.email = ['team.rails@infinum.com']
 
   spec.summary = 'Authentication mechanism for Rails apps with devise via OAuth2'
   spec.homepage = 'https://github.com/infinum/rails-infinum-azure-engine'
