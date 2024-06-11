@@ -30,20 +30,6 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'factory_bot_rails'
-  spec.add_development_dependency 'faker'
-  spec.add_development_dependency 'pry'
-  spec.add_development_dependency 'pry-byebug'
-  spec.add_development_dependency 'pry-rails'
-  spec.add_development_dependency 'rails', '~> 7.0'
-  spec.add_development_dependency 'rake', '~> 12.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rspec-rails'
-  spec.add_development_dependency 'simplecov'
-  spec.add_development_dependency 'sqlite3'
-  spec.add_development_dependency 'webmock'
-
   spec.add_dependency 'bundler'
   spec.add_dependency 'devise'
   spec.add_dependency 'omniauth-infinum_azure', '>= 0.3.0', '< 2.0'
