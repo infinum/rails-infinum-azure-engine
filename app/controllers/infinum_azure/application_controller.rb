@@ -8,7 +8,7 @@ module InfinumAzure
     delegate :resource_name, :resource_class, to: InfinumAzure
 
     def current_resource
-      method("current_#{resource_name.underscore}").call
+      method(:"current_#{resource_name.underscore}").call
     end
   end
 end

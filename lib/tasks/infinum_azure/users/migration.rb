@@ -40,7 +40,8 @@ module InfinumAzure
 
       private
 
-      attr_accessor :users_updated_count, :emails_not_found
+      attr_accessor :users_updated_count
+      attr_accessor :emails_not_found
     end
   end
 end

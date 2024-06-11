@@ -22,45 +22,37 @@ RSpec.describe InfinumAzure::Resources::Params do
       end
     end
 
-    describe 'deactivated_at' do
-      let(:params) { propagating_params.merge(deactivated: deactivated) }
+    context 'when deactivated is set to true' do
+      let(:params) { propagating_params.merge(deactivated: true) }
 
-      context 'when deactivated is set to true' do
-        let(:deactivated) { true }
-
-        it 'returns deactivated_at set to current time' do
-          freeze_time do
-            expect(normalized_hash[:deactivated_at]).to eq(Time.zone.now)
-          end
-        end
-      end
-
-      context 'when deactivated is set to false' do
-        let(:deactivated) { false }
-
-        it 'returns deactivated_at set to nil' do
-          expect(normalized_hash[:deactivated_at]).to be_nil
+      it 'returns deactivated_at set to current time' do
+        freeze_time do
+          expect(normalized_hash[:deactivated_at]).to eq(Time.zone.now)
         end
       end
     end
 
-    describe 'employee' do
-      let(:params) { propagating_params.merge(groups: groups) }
+    context 'when deactivated is set to false' do
+      let(:params) { propagating_params.merge(deactivated: false) }
 
-      context 'when groups contains "employees" substring' do
-        let(:groups) { 'employees' }
-
-        it 'returns employee set to true' do
-          expect(normalized_hash[:employee]).to be_truthy
-        end
+      it 'returns deactivated_at set to nil' do
+        expect(normalized_hash[:deactivated_at]).to be_nil
       end
+    end
 
-      context 'when groups has no "employees" substring' do
-        let(:groups) { 'contractors' }
+    context 'when groups contains "employees" substring' do
+      let(:params) { propagating_params.merge(groups: 'employees') }
 
-        it 'returns employee set to false' do
-          expect(normalized_hash[:employee]).to be_falsey
-        end
+      it 'returns employee set to true' do
+        expect(normalized_hash[:employee]).to be_truthy
+      end
+    end
+
+    context 'when groups has no "employees" substring' do
+      let(:params) { propagating_params.merge(groups: 'contractors') }
+
+      it 'returns employee set to false' do
+        expect(normalized_hash[:employee]).to be_falsey
       end
     end
   end

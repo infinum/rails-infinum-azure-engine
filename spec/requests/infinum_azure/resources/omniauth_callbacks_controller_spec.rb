@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe InfinumAzure::Resources::OmniauthCallbacksController do
   describe '#infinum_azure' do
     let(:user) { create(:user) }

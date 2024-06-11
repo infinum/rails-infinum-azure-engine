@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = 'Authentication mechanism for Rails apps with devise via OAuth2'
   spec.homepage = 'https://github.com/infinum/rails-infinum-azure-engine'
   spec.license = 'MIT'
-  spec.required_ruby_version = '>= 2.7.0'
+  spec.required_ruby_version = '>= 3.0'
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'bundler'
   spec.add_dependency 'devise'
   spec.add_dependency 'omniauth-infinum_azure', '>= 0.3.0', '< 2.0'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end

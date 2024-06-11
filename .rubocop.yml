@@ -1,7 +1,14 @@
 inherit_gem:
   rubocop-infinum: rubocop.yml
 
-require: rubocop-infinum
+require:
+  - rubocop-infinum
+  - rubocop-factory_bot
+  - rubocop-rake
+  - rubocop-rspec_rails
 
 AllCops:
   TargetRubyVersion: 3.0
+
+RSpec/MultipleExpectations:
+  Max: 5

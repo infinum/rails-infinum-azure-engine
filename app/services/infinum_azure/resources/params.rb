@@ -33,13 +33,13 @@ module InfinumAzure
                     raise 'unsupported normalization'
                   end
 
-          instance_variable_set("@#{attribute}", value)
+          instance_variable_set(:"@#{attribute}", value)
         end
       end
 
       def as_json
-        NORMALIZATIONS.keys.each_with_object({}) do |key, hash|
-          hash[key] = instance_variable_get("@#{key}")
+        NORMALIZATIONS.keys.index_with do |key|
+          instance_variable_get(:"@#{key}")
         end
       end
 

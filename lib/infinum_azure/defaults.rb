@@ -11,9 +11,9 @@ module InfinumAzure
         :uid, :email, :first_name, :last_name, :avatar_url, :deactivated_at, :provider_groups, :employee
       ],
       user_migration_scope: -> { InfinumAzure.resource_class.where(provider: 'infinum_id') },
-      user_migration_operation: ->(record, resource) {
-        record.update_attribute(:provider, 'infinum_azure')
-        record.update_attribute(:uid, resource['uid'])
+      user_migration_operation: lambda { |record, resource|
+        record.update_attribute(:provider, 'infinum_azure') # rubocop:disable Rails/SkipsModelValidations
+        record.update_attribute(:uid, resource['uid']) # rubocop:disable Rails/SkipsModelValidations
       }
     }.freeze
 
