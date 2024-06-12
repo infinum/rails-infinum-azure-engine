@@ -5,7 +5,8 @@ module InfinumAzure
     protect_from_forgery with: :exception
     respond_to :html
 
-    delegate :resource_name, :resource_class, to: InfinumAzure
+    delegate :resource_class, to: InfinumAzure
+    delegate :resource_name, to: 'InfinumAzure.config'
 
     def current_resource
       method(:"current_#{resource_name.underscore}").call
