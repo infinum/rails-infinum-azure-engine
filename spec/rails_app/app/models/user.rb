@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   devise :rememberable, :omniauthable, omniauth_providers: [:infinum_azure]
 

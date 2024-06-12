@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 RSpec.describe InfinumAzure::Api::WebhooksController do
   describe '#upsert_resource_callback' do
     let(:user_params) { attributes_for(:user).merge(azure_params) }
     let(:azure_params) do
       {
-        "avatar_url": 'https://avatar_url.com',
-        "deactivated": false,
-        "groups": 'employees'
+        avatar_url: 'https://avatar_url.com',
+        deactivated: false,
+        groups: 'employees'
       }
     end
 
@@ -13,7 +15,7 @@ RSpec.describe InfinumAzure::Api::WebhooksController do
       allow(InfinumAzure::AfterUpsertResource).to receive(:call).and_return(true)
     end
 
-    it 'updates user if user exists' do
+    it 'updates user if user exists' do # rubocop:disable RSpec/ExampleLength
       freeze_time do
         user = create(:user)
 
@@ -36,7 +38,7 @@ RSpec.describe InfinumAzure::Api::WebhooksController do
       end
     end
 
-    it 'creates user if user does not exist' do
+    it 'creates user if user does not exist' do # rubocop:disable RSpec/ExampleLength
       expected_params = {
         uid: user_params[:uid],
         email: user_params[:email],

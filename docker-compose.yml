@@ -1,0 +1,13 @@
+name: infinum-azure
+
+services:
+  runner:
+    build:
+      context: .
+      target: base
+    image: infinum-azure:1.0.0
+    volumes:
+      - .:/app:cached
+    command: ['bash']
+    stdin_open: true
+    tty: true

@@ -10,7 +10,7 @@ module InfinumAzure
           flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Azure'
           sign_in_and_redirect resource, event: :authentication
         else
-          flash[:notice] = 'You do not have permission to access this application.'
+          flash[:notice] = 'You do not have permission to access this application.' # rubocop:disable Rails/I18nLocaleTexts
           redirect_to root_path
         end
       end

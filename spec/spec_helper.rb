@@ -14,7 +14,7 @@ require 'factory_bot_rails'
 require 'faker'
 require 'webmock/rspec'
 
-Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
+Dir['./spec/support/**/*.rb'].each { |f| require f }
 
 ActiveRecord::Migrator.migrations_paths =
   [File.expand_path('../spec/rails_app/db/migrate', __dir__)]

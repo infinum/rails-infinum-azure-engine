@@ -1,27 +1,14 @@
+inherit_gem:
+  rubocop-infinum: rubocop.yml
+
+require:
+  - rubocop-infinum
+  - rubocop-factory_bot
+  - rubocop-rake
+  - rubocop-rspec_rails
+
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.0
 
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: single_quotes
-
-Layout/LineLength:
-  Max: 120
-
-Style/Documentation:
-  Enabled: false
-
-Style/SymbolArray:
-  Enabled: false
-
-Style/Lambda:
-  Enabled: false
-
-Metrics/BlockLength:
-  Exclude:
-    - '**/*.rake'
-    - 'spec/**/*.rb'
-
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'spec/**/*.rb'
+RSpec/MultipleExpectations:
+  Max: 5

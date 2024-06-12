@@ -1,4 +1,7 @@
 ## [Unreleased]
+- Add rubocop gems: factory_bot, infinum, rake, rspec_rails
+- Fix RuboCop offenses 
+- Add build GHA workflow
 
 ## [2.0.0] - 2024-03-12
 

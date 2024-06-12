@@ -6,7 +6,7 @@ module InfinumAzure
       attr_writer attr
 
       define_method(attr) do
-        instance_variable_set("@#{attr}", instance_variable_get("@#{attr}") || value)
+        instance_variable_set(:"@#{attr}", instance_variable_get(:"@#{attr}") || value)
       end
     end
   end
