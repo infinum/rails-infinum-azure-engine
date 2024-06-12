@@ -43,4 +43,8 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
   config.include TestHelpers::HttpRequest, type: :request
   config.include TestHelpers::JsonResponse, type: :request
+
+  config.before(:suite) do
+    FactoryBot.find_definitions
+  end
 end
