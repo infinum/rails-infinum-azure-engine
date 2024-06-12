@@ -6,7 +6,8 @@ module InfinumAzure
       protect_from_forgery with: :null_session
       respond_to :json
 
-      delegate :resource_name, :resource_class, to: InfinumAzure
+      delegate :resource_name, to: 'InfinumAzure.config'
+      delegate :resource_class, to: InfinumAzure
     end
   end
 end

@@ -7,7 +7,6 @@ InfinumAzure Engine is gem for resource authentication with Infinum Azure AD ser
 - [Dependencies](#dependencies)
 - [Configuration](#configuration)
   * [InfinumAzure](#infinumazure)
-  * [Secrets](#secrets)
 - [Usage](#usage)
 
 ## Installation
@@ -39,7 +38,6 @@ Or install it yourself as:
 # config/initializers/infinum_azure.rb
 
 InfinumAzure.configure do |config|
-  config.service_name = 'Revisor'
   config.resource_name = 'User'
   config.resource_attributes = [:uid, :email, :first_name, :last_name, :avatar_url,
                                 :deactivated_at, :provider_groups, :employee]
@@ -49,12 +47,20 @@ InfinumAzure.configure do |config|
     record.update_attribute(:provider, 'infinum_azure')
     record.update_attribute(:uid, resource['uid'])
   }
+  config.client_id = 'client-id'
+  config.client_secret = 'client-secret'
+  config.domain = 'https://login.b2c.com'
+  config.tenant = 'tenant'
+  config.users_auth_url = 'https://example.com'
 end
 ```
 
 Configuration options:
-* service_name(mandatory) - name of application
+* client_id(mandatory) - client ID
+* client_secret(mandatory) - client secret
+* domain(mandatory) - Identity service domain
 * resource_name(mandatory) - name of resource on whom authentication is being done
+* tenant(mandatory) - Tenant id
 * resource_attributes(optional) - attributes that will be permitted once the webhook controller receives the params from InfinumAzure
 * user_migration_scope(optional) - a block that will be used to get the initial collection of resources (if blank, default is written above)
 * user_migration_operation(optional) - a block that will be called for each resource from the above collection if a matching resource on InfinumAzure is found. The resource is a Hash containing the following properties:
@@ -65,29 +71,7 @@ Configuration options:
   * `avatar_url` - string || null
   * `groups` - string || null -> a comma separated list; if "employees" is present, the user is an employee
   * `deactivated` - boolean
-
-### Secrets
-
-Secrets should be kept in `config/secrets.yml` file.
-
-Required ones are:
-
-```ruby
-# config/secrets.yml
-
-infinum_azure:
-  client_id: 'client_id_from_InfinumAzure'
-  client_secret: 'client_secret_from_InfinumAzure'
-  domain: 'https://login.b2c.com'
-  tenant: 'InfinumAzure_tenant'
-```
-
-Optional ones are:
-
-```ruby
-infinum_azure:
-  users_auth_url: 'InfinumAzure_users_auth_url_with_api_code' # required only if infinum_azure:migrate_users rake task is used
-```
+* users_auth_url(optional)
 
 ## Usage
 

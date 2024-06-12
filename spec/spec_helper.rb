@@ -22,7 +22,6 @@ ActiveRecord::Migration.maintain_test_schema!
 OmniAuth.config.test_mode = true
 ActiveJob::Base.queue_adapter = :test
 
-InfinumAzure.config.service_name = 'InfinumAzure engine'
 Rails.configuration.host_url = 'http://localhost:3000'
 
 RSpec.configure do |config|

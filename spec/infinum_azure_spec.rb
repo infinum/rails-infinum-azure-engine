@@ -6,108 +6,38 @@ RSpec.describe InfinumAzure do
   end
 
   describe '.configure' do
-    it 'sets values to config attributes and uses default values when config attribute not set' do
+    it 'yields config' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       described_class.configure do |config|
-        config.service_name = 'Example'
         config.resource_name = 'User'
         config.user_migration_operation = -> { 'from_block' }
+        config.client_id = 'client-id'
+        config.client_secret = 'client-secret'
+        config.domain = 'https://login.b2c.com'
+        config.tenant = 'tenant'
+        config.users_auth_url = 'https://example.com'
       end
 
-      expect(described_class.service_name).to eq('Example')
-      expect(described_class.resource_name).to eq('User')
-      expect(described_class.resource_attributes).to be_a(Array)
-      expect(described_class.user_migration_scope.call).to be_a(ActiveRecord::Relation)
-      expect(described_class.user_migration_operation.call).to eq('from_block')
+      expect(described_class.config.resource_name).to eq('User')
+      expect(described_class.config.resource_attributes).to be_a(Array)
+      expect(described_class.config.user_migration_scope.call).to be_a(ActiveRecord::Relation)
+      expect(described_class.config.user_migration_operation.call).to eq('from_block')
+      expect(described_class.config.client_id).to eq('client-id')
+      expect(described_class.config.client_secret).to eq('client-secret')
+      expect(described_class.config.domain).to eq('https://login.b2c.com')
+      expect(described_class.config.tenant).to eq('tenant')
+      expect(described_class.config.users_auth_url).to eq('https://example.com')
     end
 
     it 'raises error if attribute not set' do
       expect do
         described_class.configure do |config|
-          config.service_name = nil
           config.resource_name = 'User'
+          config.client_id = 'client-id'
+          config.domain = 'https://eample.com'
+          config.tenant = 'tenant'
+          config.client_secret = nil
         end
-      end.to raise_error(described_class::Error, "InfinumAzure attribute '@service_name' not set")
-    end
-  end
-
-  describe 'delegated methods' do
-    before do
-      described_class.configure do |config|
-        config.service_name = 'Example'
-        config.resource_name = 'User'
-      end
-    end
-
-    describe '#service_name' do
-      it 'returns correct value' do
-        expect(described_class.service_name).to eq('Example')
-      end
-    end
-
-    describe '#resource_name' do
-      it 'returns correct value' do
-        expect(described_class.resource_name).to eq('User')
-      end
-    end
-
-    describe '#resource_attributes' do
-      it 'returns array' do
-        expect(described_class.resource_attributes).to be_a(Array)
-      end
-    end
-
-    describe '#user_migration_scope' do
-      it 'returns proc' do
-        expect(described_class.user_migration_scope).to be_a(Proc)
-      end
-    end
-
-    describe '#user_migration_operation' do
-      it 'returns proc' do
-        expect(described_class.user_migration_operation).to be_a(Proc)
-      end
-    end
-
-    describe '.provider' do
-      it 'returns "infinum_azure"' do
-        expect(described_class.provider).to eq('infinum_azure')
-      end
-    end
-
-    describe '.resource_class' do
-      it 'returns constantized resource_name' do
-        expect(described_class.resource_class).to eq(User)
-      end
-    end
-
-    describe '.client_id' do
-      it 'returns value from secrets' do
-        expect(described_class.client_id).to eq('vault_client_id')
-      end
-    end
-
-    describe '.client_secret' do
-      it 'returns value from secrets' do
-        expect(described_class.client_secret).to eq('vault_client_secret')
-      end
-    end
-
-    describe '.domain' do
-      it 'returns value from secrets' do
-        expect(described_class.domain).to eq('https://login.b2c.com')
-      end
-    end
-
-    describe '.tenant' do
-      it 'returns value from secrets' do
-        expect(described_class.tenant).to eq('infinumtest')
-      end
-    end
-
-    describe '.users_auth_url' do
-      it 'returns value from secrets' do
-        expect(described_class.users_auth_url).to eq('http://example_api_url_with_users.com')
-      end
+      end.to raise_error(InfinumAzure::Error, "InfinumAzure attribute '@client_secret' not set")
     end
   end
 end
