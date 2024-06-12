@@ -1,8 +1,16 @@
 ## [Unreleased]
-- Add rubocop gems: factory_bot, infinum, rake, rspec_rails
-- Fix RuboCop offenses 
-- Add build GHA workflow
+
+## [3.0.0] - 2024-06-12
+
+### Changed
 - Remove dependency on Rails secrets and enable clients to choose how to manage secret parameters
+
+### Added
+- RuboCop gems `factory_bot`, `infinum`, `rake`, `rspec_rails`
+- GitHub Actions to build app image and run checks
+
+### Fixed
+- RuboCop offenses 
 
 ## [2.0.0] - 2024-03-12
 
