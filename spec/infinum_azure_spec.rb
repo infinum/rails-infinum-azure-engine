@@ -6,7 +6,7 @@ RSpec.describe InfinumAzure do
   end
 
   describe '.configure' do
-    it 'yields config' do
+    it 'yields config' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       described_class.configure do |config|
         config.resource_name = 'User'
         config.user_migration_operation = -> { 'from_block' }
