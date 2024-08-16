@@ -16,7 +16,8 @@ module InfinumAzure
         employee: {
           procedure: ->(value) { value&.include?('employees') },
           target_name: :groups
-        }
+        },
+        groups: :propagate
       }.freeze
 
       def self.normalize(payload)

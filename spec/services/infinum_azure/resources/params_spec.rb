@@ -10,7 +10,8 @@ RSpec.describe InfinumAzure::Resources::Params do
         email: 'email',
         first_name: 'first_name',
         last_name: 'last_name',
-        avatar_url: 'avatar_url'
+        avatar_url: 'avatar_url',
+        groups: 'groups'
       }
     end
 
@@ -18,7 +19,7 @@ RSpec.describe InfinumAzure::Resources::Params do
       let(:params) { propagating_params }
 
       it 'just propagates the attributes marked as :propagate' do
-        expect(normalized_hash).to eq(params.merge(deactivated_at: nil, employee: nil))
+        expect(normalized_hash).to eq(params.merge(deactivated_at: nil, employee: false))
       end
     end
 
