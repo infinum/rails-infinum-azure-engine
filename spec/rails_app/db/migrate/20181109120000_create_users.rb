@@ -15,7 +15,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :uid
 
       t.datetime :deactivated_at
-      t.string :provider_groups
+      t.string :groups
       t.boolean :employee
 
       t.datetime :remember_created_at

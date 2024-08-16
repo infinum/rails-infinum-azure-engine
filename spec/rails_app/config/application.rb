@@ -14,7 +14,7 @@ module RailsApp
 
     InfinumAzure.config.resource_name = 'User'
     InfinumAzure.config.resource_attributes = [
-      :uid, :email, :first_name, :last_name, :avatar_url, :deactivated_at, :provider_groups, :employee
+      :uid, :email, :first_name, :last_name, :avatar_url, :deactivated_at, :groups, :employee
     ]
   end
 end
