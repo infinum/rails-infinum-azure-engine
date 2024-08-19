@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 20_181_109_120_000) do
     t.string 'provider'
     t.string 'uid'
     t.datetime 'deactivated_at', precision: nil
-    t.string 'provider_groups'
+    t.string 'groups'
     t.boolean 'employee'
     t.datetime 'remember_created_at', precision: nil
     t.string 'remember_token'

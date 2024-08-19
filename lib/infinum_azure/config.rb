@@ -6,7 +6,7 @@ module InfinumAzure
     PROVIDER_INFINUM_AZURE = 'infinum_azure'
     UID = 'uid'
     DEFAULT_RESOURCE_ATTRIBUTES = [
-      :uid, :email, :first_name, :last_name, :avatar_url, :deactivated_at, :provider_groups, :employee
+      :uid, :email, :first_name, :last_name, :avatar_url, :deactivated_at, :groups, :employee
     ].freeze
 
     attr_accessor :resource_name

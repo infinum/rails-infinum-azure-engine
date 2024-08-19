@@ -46,6 +46,7 @@ RSpec.describe InfinumAzure::Api::WebhooksController do
         last_name: user_params[:last_name],
         avatar_url: azure_params[:avatar_url],
         deactivated_at: nil,
+        groups: 'employees',
         employee: true
       }
 

@@ -40,7 +40,7 @@ Or install it yourself as:
 InfinumAzure.configure do |config|
   config.resource_name = 'User'
   config.resource_attributes = [:uid, :email, :first_name, :last_name, :avatar_url,
-                                :deactivated_at, :provider_groups, :employee]
+                                :deactivated_at, :groups, :employee]
 
   config.user_migration_scope = -> { resource_class.where(provider: 'infinum_id') }
   config.user_migration_operation = -> (record, resource) {
@@ -89,7 +89,7 @@ Configuration options:
 * *last_name* _string_
 * *avatar_url* _string_
 * *deactivated_at* _datetime_
-* *provider_groups* _jsonb array_
+* *groups* _jsonb array_
 * *employee* _boolean_
 
 2. Add following rows to resource model:
