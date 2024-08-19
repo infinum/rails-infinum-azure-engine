@@ -6,6 +6,9 @@
 - Change provider_groups to groups and add groups attribute to Params
 
 ## [3.0.0] - 2024-06-12
+**BREAKING CHANGE**
+- Remove `service_name` option from the configuration
+- Added mandatory configuration options `client_id`, `client_secret`, `domain`, and `tenant`
 
 ### Changed
 - Remove dependency on Rails secrets and enable clients to choose how to manage secret parameters
