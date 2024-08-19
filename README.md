@@ -89,7 +89,7 @@ Configuration options:
 * *last_name* _string_
 * *avatar_url* _string_
 * *deactivated_at* _datetime_
-* *provider_groups* _jsonb array_
+* *groups* _jsonb array_
 * *employee* _boolean_
 
 2. Add following rows to resource model:
