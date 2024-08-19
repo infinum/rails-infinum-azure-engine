@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    infinum_azure (4.0.0)
+    infinum_azure (3.1.0)
       bundler
       devise
       omniauth-infinum_azure (>= 0.3.0, < 2.0)

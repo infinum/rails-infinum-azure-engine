@@ -1,6 +1,6 @@
 ## [Unreleased]
 
-## [4.0.0] - 2024-08-16
+## [3.1.0] - 2024-08-16
 
 ### Changed
 - Change provider_groups to groups and add groups attribute to Params
