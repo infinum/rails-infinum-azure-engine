@@ -9,7 +9,7 @@ module InfinumAzure
     delegate :resource_name, to: 'InfinumAzure.config'
 
     def current_resource
-      method(:"current_#{resource_name.underscore}").call
+      method(:"current_#{resource_name.parameterize.underscore}").call
     end
   end
 end
