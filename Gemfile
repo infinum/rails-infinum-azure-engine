@@ -7,9 +7,14 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 # Specify your gem's dependencies in infinum_azure.gemspec
 gemspec
 
+gem 'base64'
+gem 'bigdecimal'
 gem 'bundler'
+gem 'drb'
 gem 'factory_bot_rails'
 gem 'faker'
+gem 'mutex_m'
+gem 'observer'
 gem 'pry'
 gem 'pry-byebug'
 gem 'pry-rails'
