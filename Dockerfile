@@ -1,4 +1,4 @@
-FROM ruby:3.0 as base
+FROM ruby:3.2 as base
 
 RUN apt-get update -qq \
   && apt-get install -yq --no-install-recommends git build-essential less

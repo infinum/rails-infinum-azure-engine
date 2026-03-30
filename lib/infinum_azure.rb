@@ -7,7 +7,8 @@ require 'infinum_azure/config'
 require 'devise'
 
 module InfinumAzure
-  Error = Class.new(StandardError)
+  class Error < StandardError
+  end
 
   class << self
     def configure

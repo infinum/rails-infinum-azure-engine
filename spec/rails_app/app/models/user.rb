@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
 
-  def remember_me
+  def remember_me # rubocop:disable Naming/PredicateMethod
     true
   end
 
