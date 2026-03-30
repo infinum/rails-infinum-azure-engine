@@ -11,3 +11,6 @@
 .rspec_status
 coverage
 .idea
+
+Gemfile.lock
+spec/rails_app/db/development.sqlite3
